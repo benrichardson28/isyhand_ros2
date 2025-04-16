@@ -1,0 +1,32 @@
+FROM ros:humble
+
+# Define workspace path inside the container
+ARG LOCAL_WS
+ARG CONTAINER_WS
+ENV WORKSPACE_DIR=${CONTAINER_WS}
+
+# Install necessary dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    cmake \
+    git \
+    python3-pip \
+    python3-rosdep \
+    python3-colcon-common-extensions \
+    libusb-1.0-0-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+ARG USERNAME=admin
+ENV USERNAME=${USERNAME}
+
+RUN --mount=type=cache,target=/var/cache/apt \
+    apt-get update && apt-get install -y \
+    gosu \
+    sudo \
+    udev
+
+# Add entrypoint
+COPY ./entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- Start the ISyHand ROS node -->
+    <node name="sin_gen_node" pkg="isyhand_driver" exec="test_motion_node" output="screen">
+    </node>
+</launch>

@@ -1,0 +1,18 @@
+<launch>
+    <!-- Start the ISyHand ROS node -->
+    <node name="isyhand_driver" pkg="isyhand_driver" exec="isyhand_driver_node" output="screen">
+        
+        <!-- Enable/Disable publishing of joint states -->
+        <param name="publish_position" value="true"/>
+        <param name="publish_current" value="false"/>
+        <param name="publish_temperature" value="false"/>
+        
+        <!-- Set joint speeds (single value or list) -->
+        <!-- <param name="set_joint_speeds" value="[50, 50, 50, 50, 50]"/> --> <!-- Per joint -->
+        <!-- <param name="set_joint_speeds" value="445"/>  -->
+
+        <!-- Set joint currents (single value or list) -->
+        <!-- <param name="set_joint_currents" value="[100, 100, 100, 100, 100]"/> --> <!-- Per joint -->
+        <!-- <param name="set_joint_currents" value="500"/>  -->
+    </node>
+</launch>
