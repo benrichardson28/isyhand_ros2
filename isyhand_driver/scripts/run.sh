@@ -30,6 +30,8 @@ fi
 echo "🛠  Building Docker image: $IMAGE_NAME"
 docker build \
   --build-arg USERNAME="admin" \
+  --build-arg LOCAL_WS=$ISYHAND_ROS_WS \
+  --build-arg CONTAINER_WS=$CONTAINER_WS
   -t $IMAGE_NAME \
   -f $ISYHAND_ROS_WS/src/isyhand_driver/docker/Dockerfile.base \
   $ISYHAND_ROS_WS/src/isyhand_driver/docker
