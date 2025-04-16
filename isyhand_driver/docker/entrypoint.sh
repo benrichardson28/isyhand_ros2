@@ -24,7 +24,6 @@ fi
 echo "admin ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/admin
 chmod 0440 /etc/sudoers.d/admin
 
-
 # Ensure rosdep can access necessary directories
 # Set proper permissions for rosdep's directories
 mkdir -p /home/admin/.ros
@@ -36,5 +35,12 @@ chown -R admin:admin /etc/ros/rosdep
 
 # Run as the created user
 service udev restart
+
+cat << 'EOF' >> /home/admin/.bashrc
+source /opt/ros/$ROS_DISTRO/setup.bash
+if [ -f "$WORKSPACE_DIR/install/setup.bash" ]; then
+    source "$WORKSPACE_DIR/install/setup.bash"
+fi
+EOF
 
 exec gosu admin "$@"
