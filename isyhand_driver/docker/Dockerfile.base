@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y \
 COPY . ${CONTAINER_WS}/src
 
 RUN rosdep update && \
-    rosdep install --from-paths ${CONTAINER_WS}/src --ignore-src -y
+    rosdep install --from-paths ${CONTAINER_WS}/src --ignore-src --rosdistro $ROS_DISTRO -y
 
 ARG USERNAME=admin
 ENV USERNAME=${USERNAME}
