@@ -26,6 +26,18 @@ if [[ ! $(groups $USER) =~ $RE ]]; then
     exit 1
 fi
 
+# Remove any exited containers.
+if [ "$(docker ps -a --quiet --filter status=exited --filter name=$CONTAINER_NAME)" ]; then
+    docker rm $CONTAINER_NAME > /dev/null
+fi
+
+# Re-use existing container.
+if [ "$(docker ps -a --quiet --filter status=running --filter name=$CONTAINER_NAME)" ]; then
+    print_info "Attaching to running container: $CONTAINER_NAME"
+    docker exec -it -u admin --workdir $CONTAINER_WS $CONTAINER_NAME /bin/bash $@
+    exit 0
+fi
+
 # Build the image if needed
 echo "🛠  Building Docker image: $IMAGE_NAME"
 docker build \
@@ -38,18 +50,6 @@ docker build \
 # add these if cache issues:
   # --no-cache \
   # --progress=plain \
-
-# Remove any exited containers.
-if [ "$(docker ps -a --quiet --filter status=exited --filter name=$CONTAINER_NAME)" ]; then
-    docker rm $CONTAINER_NAME > /dev/null
-fi
-
-# Re-use existing container.
-if [ "$(docker ps -a --quiet --filter status=running --filter name=$CONTAINER_NAME)" ]; then
-    print_info "Attaching to running container: $CONTAINER_NAME"
-    docker exec -it -u admin --workdir $CONTAINER_WS $CONTAINER_NAME /bin/bash $@
-    exit 0
-fi
 
 DOCKER_ARGS+=("-v /tmp/.X11-unix:/tmp/.X11-unix")
 DOCKER_ARGS+=("-v $HOME/.Xauthority:/home/admin/.Xauthority:rw")
