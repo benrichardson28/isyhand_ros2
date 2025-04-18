@@ -15,21 +15,9 @@ find_package(rclcpp REQUIRED)
 find_package(dynamixel_sdk REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
-#find_package(isyhand_interface REQUIRED)
+find_package(isyhand_interface REQUIRED)
 
 include_directories(include)
-
-########## to create messages
-set(msg_files
-	"msg/JointState.msg"
-	"msg/CommandJointPos.msg"
-)
-rosidl_generate_interfaces(${PROJECT_NAME}
-  ${msg_files}
-)
-
-# after definitions before executables
-rosidl_get_typesupport_target(cpp_typesupport_target "${PROJECT_NAME}" "rosidl_typesupport_cpp")
 
 ############# One executable group ##############
 add_executable(isyhand_driver_node 
@@ -41,6 +29,7 @@ ament_target_dependencies(isyhand_driver_node
   rclcpp
   dynamixel_sdk
   std_msgs
+  isyhand_interface
 )
 #this is for messages defined in the same package
 target_link_libraries(isyhand_driver_node "${cpp_typesupport_target}")
@@ -53,6 +42,7 @@ add_executable(test_motion_node
 ament_target_dependencies(test_motion_node
  rclcpp
  std_msgs
+ isyhand_interface
 )
 target_link_libraries(test_motion_node "${cpp_typesupport_target}")
 #################################################

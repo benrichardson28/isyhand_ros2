@@ -1,14 +1,14 @@
 #include <rclcpp/rclcpp.hpp>
-#include "isyhand_driver/msg/joint_state.hpp"
-#include "isyhand_driver/msg/command_joint_pos.hpp"
+#include "isyhand_interface/msg/joint_state.hpp"
+#include "isyhand_interface/msg/command_joint_pos.hpp"
 #include <isyhand_driver/hardware_interface.h>
 #include <mutex>
 
 class ISyHandROSNode : public rclcpp::Node {
 private:
     ISyHandDriver isyhand;  // Hand hardware driver
-    rclcpp::Publisher<isyhand_driver::msg::JointState>::SharedPtr joint_state_pub;
-    rclcpp::Subscription<isyhand_driver::msg::CommandJointPos>::SharedPtr joint_command_sub;
+    rclcpp::Publisher<isyhand_interface::msg::JointState>::SharedPtr joint_state_pub;
+    rclcpp::Subscription<isyhand_interface::msg::CommandJointPos>::SharedPtr joint_command_sub;
     rclcpp::TimerBase::SharedPtr timer_;  // Loop frequency (Hz)
 
     std::vector<int> target_positions;
@@ -62,10 +62,10 @@ public:
 
 
         // Publisher: Joint state feedback
-        joint_state_pub = this->create_publisher<isyhand_driver::msg::JointState>("joint_states", 10);
+        joint_state_pub = this->create_publisher<isyhand_interface::msg::JointState>("joint_states", 10);
 
         // Subscriber: Joint command input
-        joint_command_sub = this->create_subscription<isyhand_driver::msg::CommandJointPos>(
+        joint_command_sub = this->create_subscription<isyhand_interface::msg::CommandJointPos>(
             "set_joint_values", 10, 
             std::bind(&ISyHandROSNode::setJointValues, this, std::placeholders::_1)
         );
@@ -93,7 +93,7 @@ public:
     }
 
     void publishJointStates() {
-        isyhand_driver::msg::JointState msg;
+        isyhand_interface::msg::JointState msg;
 
         if (publish_position) {
             isyhand.readJointEncoders();
@@ -111,7 +111,7 @@ public:
         joint_state_pub->publish(msg);
     }
 
-    void setJointValues(const isyhand_driver::msg::CommandJointPos::SharedPtr msg) {
+    void setJointValues(const isyhand_interface::msg::CommandJointPos::SharedPtr msg) {
         if (msg->positions.size() != NUM_JOINTS) {
             RCLCPP_WARN(this->get_logger(),"Received joint command with incorrect number of joints!");
             return;
