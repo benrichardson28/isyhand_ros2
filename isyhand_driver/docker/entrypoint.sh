@@ -24,6 +24,10 @@ fi
 echo "admin ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/admin
 chmod 0440 /etc/sudoers.d/admin
 
+if [ ! -d /dev/ttyUSB0 ]; then
+    sudo chmod 666 /dev/ttyUSB0
+fi
+
 # Ensure rosdep can access necessary directories
 # Set proper permissions for rosdep's directories
 mkdir -p /home/admin/.ros
