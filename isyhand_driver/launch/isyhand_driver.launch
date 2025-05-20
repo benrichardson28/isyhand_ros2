@@ -1,4 +1,6 @@
+<?xml version="1.0"?>
 <launch>
+    
     <!-- Start the ISyHand ROS node -->
     <node name="isyhand_driver" pkg="isyhand_driver" exec="isyhand_driver_node" output="screen">
         
@@ -6,10 +8,15 @@
         <param name="publish_position" value="true"/>
         <param name="publish_current" value="false"/>
         <param name="publish_temperature" value="false"/>
+        <param name="pos_d_gain" value="200"/>
+        <param name="pos_i_gain" value="0"/>
+        <param name="pos_p_gain" value="1100"/>
+        <param name="urdf_filepath" value="$(env WORKSPACE_DIR)/assets/ISyHand_v6.urdf"/>
         
         <!-- Set joint speeds (single value or list) -->
         <!-- <param name="set_joint_speeds" value="[50, 50, 50, 50, 50]"/> --> <!-- Per joint -->
-        <!-- <param name="set_joint_speeds" value="445"/>  -->
+        <!-- This 229 matches the 5.5 rad/s velocity in the urdf -->
+        <!-- <param name="set_joint_speeds" value="[229]"/>  -->
 
         <!-- Set joint currents (single value or list) -->
         <!-- <param name="set_joint_currents" value="[100, 100, 100, 100, 100]"/> --> <!-- Per joint -->

@@ -14,8 +14,10 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(dynamixel_sdk REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(std_srvs REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 find_package(isyhand_interface REQUIRED)
+find_package(urdf REQUIRED)
 
 include_directories(include)
 
@@ -29,7 +31,9 @@ ament_target_dependencies(isyhand_driver_node
   rclcpp
   dynamixel_sdk
   std_msgs
+  std_srvs
   isyhand_interface
+  urdf
 )
 #this is for messages defined in the same package
 target_link_libraries(isyhand_driver_node "${cpp_typesupport_target}")
