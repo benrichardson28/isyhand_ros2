@@ -1,12 +1,32 @@
 ## Welcome to the ISyHand Driver
 
-👉 **More info:** [ISyHand Website](https://isyhand.is.mpg.de/)
-
----
 This repository contains a C++ driver for the ISyHand, a ROS2 wrapper, and urdf model of the ISyHand.v6.
-The ROS2 wrapper uses the associated urdf model in [assets]() to set joint limits, efforts, and velocities in the driver. 
+The ROS2 wrapper uses the associated urdf model in [assets](https://github.com/benrichardson28/isyhand_ros2/tree/master/assets) to set joint limits, efforts, and velocities in the driver. 
 
-### Software Setup
+More information about the ISyHand can be found [here](https://isyhand.is.mpg.de/).
+---
+
+## Running the driver.
+### Connect the ISyHand
+- Power the hand and connect it via USB to the computer.
+- Find the USB port using the [Dynamixel Wizard](https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_wizard2/)
+
+### On Ubuntu using docker (tested on Ubuntu 22)
+Install [docker](https://docs.docker.com/engine/install/ubuntu/) and follow the [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user).
+#### Create a folder that will act as your ROS2 workspace if one doesn't exist:
+- Clone this repository into the src folder of the workspace.
+- From the repository directory, start and enter the docker container by running: `./src/isyhand_driver/scripts/run.sh <usb port from above, defaults to /dev/ttyUSB0>`. 
+** `run.sh` automatically mounts the device to /dev/ttyUSB0 inside the container. **
+- Run `colcon build` to build the package.
+- Source the package with `source "$WORKSPACE_DIR/install/setup.bash"`.
+**_NOTE_** If the package is already built, the docker entrypoint will automatically do the sourcing. 
+
+
+
+#### How to use
+- `ros2_example.py` is an example script that queries the LEAP service and also publishes out a pose for the hand to move to.  You can build off of this for your own project.
+- For more info I recommend checking the ROS2 docs and the other docs for LEAP Hand.
+
 
 
 
@@ -82,4 +102,6 @@ contributed equally to this publication},
 Mack, Lukas and Stueckler, Joerg and Kuchenbecker, Katherine J.},
   month_numeric = {9}
 }
+
+
 
