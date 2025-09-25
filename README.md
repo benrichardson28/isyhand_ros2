@@ -3,13 +3,13 @@
 👉 **More info:** [ISyHand Website](https://isyhand.is.mpg.de/)
 
 ---
+This repository contains a C++ driver for the ISyHand, a ROS2 wrapper, and urdf model of the ISyHand.v6.
+The ROS2 wrapper uses the associated urdf model in [assets]() to set joint limits, efforts, and velocities in the driver. 
 
 ### Software Setup
-- See these folders for setup details:  
-  - [Python API](https://github.com/leap-hand/LEAP_Hand_API/tree/main/python)  
-  - [ROS API](https://github.com/leap-hand/LEAP_Hand_API/tree/main/ros_module)  
-  - [ROS2 API](https://github.com/leap-hand/LEAP_Hand_API/tree/main/ros2_module)  
-  - [Useful Tools](https://github.com/leap-hand/LEAP_Hand_API/tree/main/useful_tools)
+
+
+
 <!--
 ---
 
@@ -82,3 +82,4 @@ contributed equally to this publication},
 Mack, Lukas and Stueckler, Joerg and Kuchenbecker, Katherine J.},
   month_numeric = {9}
 }
+
