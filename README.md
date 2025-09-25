@@ -51,8 +51,4 @@ contributed equally to this publication},
   author = {Richardson, Benjamin A. and Gr{\"u}ninger, Felix and
 Mack, Lukas and Stueckler, Joerg and Kuchenbecker, Katherine J.},
   month_numeric = {9}
-}
-
-
-
-
+}```
