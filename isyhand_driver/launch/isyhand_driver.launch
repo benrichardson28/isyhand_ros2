@@ -11,7 +11,7 @@
         <param name="pos_d_gain" value="200"/>
         <param name="pos_i_gain" value="0"/>
         <param name="pos_p_gain" value="1100"/>
-        <param name="urdf_filepath" value="$(env WORKSPACE_DIR)/assets/ISyHand_v6.urdf"/>
+        <param name="urdf_filepath" value="$(env WORKSPACE_DIR)/src/assets/ISyHand_v6.urdf"/>
         
         <!-- Set joint speeds (single value or list) -->
         <!-- <param name="set_joint_speeds" value="[50, 50, 50, 50, 50]"/> --> <!-- Per joint -->
