@@ -1,3 +1,6 @@
 [submodule "isyhand_interface"]
 	path = isyhand_interface
 	url = git@github.com:benrichardson28/isyhand_interface.git
+[submodule "DynamixelSDK"]
+	path = DynamixelSDK
+	url = https://github.com/ROBOTIS-GIT/DynamixelSDK.git
