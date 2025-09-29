@@ -12,7 +12,7 @@ More information about the ISyHand can be found [here](https://isyhand.is.mpg.de
 - Find the USB port using the [Dynamixel Wizard](https://emanual.robotis.com/docs/en/software/dynamixel/dynamixel_wizard2/).
 
 #### Run the docker container (tested on Ubuntu 22)
-Install [docker](https://docs.docker.com/engine/install/ubuntu/) and follow the [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user).
+- Install [docker](https://docs.docker.com/engine/install/ubuntu/) and follow the [post-installation steps](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user).
 - Clone this repository with the `--recurse-submodules` flag into `<workspace>/src` (workspace can be an existing ros2 workspace or a new folder).
 - From the repository directory, start and enter the docker container by running: `./src/isyhand_driver/scripts/run.sh <usb port from above, defaults to /dev/ttyUSB0>`. 
 > 1. To enter the container with another shell, simply call `run.sh` again.
@@ -52,4 +52,5 @@ contributed equally to this publication},
 Mack, Lukas and Stueckler, Joerg and Kuchenbecker, Katherine J.},
   month_numeric = {9}
 }
+
 
