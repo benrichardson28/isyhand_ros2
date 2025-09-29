@@ -34,7 +34,6 @@ More information about the ISyHand can be found [here](https://isyhand.is.mpg.de
 - Questions/issues: **richardson@is.mpg.de** or **grueninger@is.mpg.de**
 - **License:**  
   - Code: MIT License  
-  - CAD: CC BY‑NC‑SA (non‑commercial use with attribution)
 - Provided **as‑is**, without warranty.
 
 **If you use ISyHand in research, please cite:**
@@ -54,6 +53,7 @@ contributed equally to this publication},
 Mack, Lukas and Stueckler, Joerg and Kuchenbecker, Katherine J.},
   month_numeric = {9}
 }
+
 
 
 
