@@ -7,10 +7,6 @@ DEVICE="${1:-/dev/ttyUSB0}"
 # Path to your ROS workspace
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ISYHAND_ROS_WS="$(cd "$SCRIPT_DIR/../../../" && pwd)"
-<<<<<<< HEAD
-echo $ISYHAND_ROS_WS
-=======
->>>>>>> a1803417090241f020b70523589bf8cef34e9c1b
 CONTAINER_WS="/workspaces/isyhand_ros-dev"
 IMAGE_NAME="isyhand_ros_image"
 CONTAINER_NAME="isyhand_ros_container"
@@ -76,18 +72,10 @@ docker run -it --rm \
   --ipc=host \
   ${DOCKER_ARGS[@]} \
   --name "$CONTAINER_NAME" \
-<<<<<<< HEAD
-=======
   --device $DEVICE:/dev/ttyUSB0 \
->>>>>>> a1803417090241f020b70523589bf8cef34e9c1b
   -v "$ISYHAND_ROS_WS":$CONTAINER_WS \
   -v /etc/localtime:/etc/localtime:ro \
   --workdir $CONTAINER_WS \
    $IMAGE_NAME \
    /bin/bash
-<<<<<<< HEAD
-#  --device $DEVICE:/dev/ttyUSB0 \
 
-=======
- 
->>>>>>> a1803417090241f020b70523589bf8cef34e9c1b
